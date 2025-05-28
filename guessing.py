@@ -4,7 +4,7 @@ class NumberGuessing:
     def __init__(self, min_number, max_number):
         self.min = min_number
         self.max = max_number
-        self.secretNumber = self.min + self.max
+        self.secretNumber = rd.randint(self.min, self.max)
         self.trie = 0
         self.life = 4
         
