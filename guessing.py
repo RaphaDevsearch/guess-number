@@ -18,15 +18,33 @@ class NumberGuessing:
         self.msg(f"trie = {self.trie}")
         self.msg(f"life = {self.life - self.trie} left")
     
+    def help(self, guess):
+        if guess <= self.min :
+            self.msg("too low, move right")
+        elif guess >= self.max:
+            self.msg("Too hight, move left")
+        elif self.min < guess < self.max:
+            self.msg("on way")
+            if guess > self.secretNumber:
+                self.msg("move left")
+            else:
+                self.msg("Move right")
+    
     def play(self):
         guess = int(input("guess : ")) # input user
+        self.trie = 1
+        # self.help(guess)
+        
         
         while True :
             if not self.is_right(guess):
+                self.help(guess)
                 guess = int(input("guess again ")) # input user
                 
+                
                 self.trie += 1
-                if self.trie >= self.life -1 :
+                
+                if self.trie - self.life == 0:
                     self.msg(f"Lose :(, the truth is {self.secretNumber}")
                     self.msg_scor()
                     break
@@ -36,7 +54,7 @@ class NumberGuessing:
                 self.msg_scor()
                 break
             
-        
+            
 
 
 if __name__ == "__main__":
