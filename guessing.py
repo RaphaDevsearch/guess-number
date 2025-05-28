@@ -11,6 +11,13 @@ class NumberGuessing:
     def is_right(self, guess):
         return guess == self.secretNumber
     
+    def msg(self, message):
+        print(message)
+    
+    def msg_scor(self):
+        self.msg(f"trie = {self.trie}")
+        self.msg(f"life = {self.life - self.trie} left")
+    
     def play(self):
         guess = int(input("guess : ")) # input user
         
@@ -20,17 +27,15 @@ class NumberGuessing:
                 
                 self.trie += 1
                 if self.trie >= self.life -1 :
-                    print("Lose :(")
+                    self.msg(f"Lose :(, the truth is {self.secretNumber}")
+                    self.msg_scor()
                     break
             
             else :
-                print("Bravo :)")
+                self.msg("Bravo :)")
+                self.msg_scor()
                 break
             
-        
-        # while not self.check_guess(guess) and self.life > 1:
-        #     guess = int(input(f"guess again :{self.life} left : "))
-        #     self.life -= 1
         
 
 
